@@ -5,6 +5,7 @@ export type User = {
   name: string
   email: string
   age: number
+  password: string
 }
 
 export class UsersRepository {
@@ -15,6 +16,15 @@ export class UsersRepository {
       id: randomUUID()
     });
     UsersRepository.users.push(user);
+    return user;
+  }
+
+  list() {
+    return UsersRepository.users;
+  }
+
+  findByEmail(email: string) {
+    const user = UsersRepository.users.find(user => user.email === email);
     return user;
   }
 }

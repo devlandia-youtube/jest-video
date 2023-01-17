@@ -4,13 +4,13 @@ import { CreateUserService } from "../services/CreateUserService";
 
 export class CreateUserController {
   handle(request: Request, response: Response) {
-    const { name, email, age } = request.body;
+    const { name, email, age, password } = request.body;
 
     const usersRepository = new UsersRepository();
 
     const createUserService = new CreateUserService(usersRepository);
     
-    const user = createUserService.execute({ name, email, age });
+    const user = createUserService.execute({ name, email, age, password });
 
     return response.status(201).json(user);
   }
